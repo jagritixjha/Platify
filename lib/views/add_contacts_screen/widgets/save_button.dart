@@ -43,6 +43,7 @@ class SaveButton extends StatelessWidget {
           'Save',
           style: CupertinoTheme.of(context).textTheme.actionTextStyle.copyWith(
                 fontSize: 16,
+                color: CupertinoColors.white,
               ),
         ),
         onPressed: () {
@@ -70,6 +71,8 @@ class SaveButton extends StatelessWidget {
               log('${i.date.day}/${i.date.month}/${i.date.year}');
             }
           } else {
+            validation = pfp != null ? true : false;
+            log(validation.toString());
             log('not validated');
           }
         },
