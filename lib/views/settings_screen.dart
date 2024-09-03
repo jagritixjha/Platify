@@ -12,10 +12,18 @@ import 'package:platform_converter_app/views/provides/theme_provider.dart';
 import 'package:platform_converter_app/views/utils/common_widgets/sized_box.dart';
 import 'package:provider/provider.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   SettingsScreen({super.key});
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
   TextEditingController name = TextEditingController();
+
   TextEditingController bio = TextEditingController();
+
   bool validation = false;
 
   Future<void> _showImagePicker(BuildContext context) async {
@@ -84,14 +92,46 @@ class SettingsScreen extends StatelessWidget {
     }
   }
 
-  // void saveDetails(){
-  //   if(name == null && bio == null){
-  //   }
-  // }
+  saveDetails() {
+    log('save button');
+    if (name.text.isEmpty || bio.text.isEmpty) {
+      return showCupertinoDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text('Alert'),
+            content: Text(
+              'Please fill all the details',
+              style:
+                  CupertinoTheme.of(context).textTheme.actionTextStyle.copyWith(
+                        fontSize: 14,
+                      ),
+            ),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: Text(
+                  'OK',
+                  style: CupertinoTheme.of(context)
+                      .textTheme
+                      .actionTextStyle
+                      .copyWith(
+                        fontSize: 16,
+                        color: CupertinoColors.systemBlue,
+                      ),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    log(name.toString());
     return CupertinoPageScaffold(
       child: Consumer<SwitchProvider>(
         builder: (context, sp, child) => Column(
@@ -146,14 +186,23 @@ class SettingsScreen extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         decoration: const BoxDecoration(border: Border()),
                         controller: name,
+                        style: CupertinoTheme.of(context)
+                            .textTheme
+                            .textStyle
+                            .copyWith(
+                              fontSize: 16,
+                              height: 1,
+                              color: CupertinoColors.systemGrey,
+                            ),
                         placeholder: 'Enter your name',
                         textAlign: TextAlign.center,
                         placeholderStyle: CupertinoTheme.of(context)
                             .textTheme
                             .textStyle
                             .copyWith(
-                              fontSize: 16,
-                              color: CupertinoColors.systemGrey2,
+                              fontSize: 12,
+                              height: 1,
+                              color: CupertinoColors.systemGrey,
                             ),
                         validator: (value) {
                           return value == null || value.isEmpty
@@ -167,17 +216,42 @@ class SettingsScreen extends StatelessWidget {
                         controller: bio,
                         placeholder: 'Enter your bio',
                         textAlign: TextAlign.center,
+                        style: CupertinoTheme.of(context)
+                            .textTheme
+                            .textStyle
+                            .copyWith(
+                              fontSize: 14,
+                              height: 0,
+                              color: CupertinoColors.systemGrey,
+                            ),
                         placeholderStyle: CupertinoTheme.of(context)
                             .textTheme
                             .textStyle
                             .copyWith(
-                              fontSize: 16,
-                              color: CupertinoColors.systemGrey2,
+                              fontSize: 12,
+                              height: 0,
+                              color: CupertinoColors.systemGrey,
                             ),
                         validator: (value) {
                           return value == null || value.isEmpty
                               ? 'enter bio'
                               : null;
+                        },
+                      ),
+                      CupertinoButton.filled(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Text(
+                          'Save',
+                          style: CupertinoTheme.of(context)
+                              .textTheme
+                              .actionTextStyle
+                              .copyWith(
+                                fontSize: 16,
+                                color: CupertinoColors.white,
+                              ),
+                        ),
+                        onPressed: () {
+                          saveDetails();
                         },
                       ),
                     ],
