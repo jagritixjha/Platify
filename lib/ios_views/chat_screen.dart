@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:platform_converter_app/views/utils/contact_info_modal.dart';
+import 'package:platform_converter_app/utils/contact_info_modal.dart';
 
 class ChatsScreen extends StatelessWidget {
   const ChatsScreen({super.key});

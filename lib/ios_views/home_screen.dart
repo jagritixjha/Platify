@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:platform_converter_app/views/add_contacts_screen/add_contacts_screen.dart';
-import 'package:platform_converter_app/views/calls_screen.dart';
-import 'package:platform_converter_app/views/chat_screen.dart';
-import 'package:platform_converter_app/views/provides/switch_provider.dart';
-import 'package:platform_converter_app/views/settings_screen.dart';
+import 'package:platform_converter_app/ios_views/add_contacts_screen/add_contacts_screen.dart';
+import 'package:platform_converter_app/ios_views/calls_screen.dart';
+import 'package:platform_converter_app/ios_views/chat_screen.dart';
+import 'package:platform_converter_app/ios_views/settings_screen.dart';
+import 'package:platform_converter_app/providers/switch_provider.dart';
+
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {

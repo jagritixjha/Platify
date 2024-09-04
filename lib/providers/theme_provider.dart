@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:platform_converter_app/views/utils/themes.dart';
+import 'package:platform_converter_app/utils/themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeProvider extends ChangeNotifier {

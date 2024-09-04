@@ -7,9 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:platform_converter_app/views/add_contacts_screen/widgets/form.dart';
 import 'package:platform_converter_app/views/add_contacts_screen/widgets/pickers.dart';
 import 'package:platform_converter_app/views/add_contacts_screen/widgets/save_button.dart';
-import 'package:platform_converter_app/views/provides/change_time_provider.dart';
-import 'package:platform_converter_app/views/provides/image_provider.dart';
-import 'package:platform_converter_app/views/utils/common_widgets/sized_box.dart';
+import 'package:platform_converter_app/provides/change_time_provider.dart';
+import 'package:platform_converter_app/provides/image_provider.dart';
 import 'package:provider/provider.dart';
 
 class AddContactScreen extends StatefulWidget {
@@ -151,7 +150,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
                   child: Row(
                     children: [
                       const Icon(CupertinoIcons.camera),
-                      sizedBoxx(
+                      SizedBox(
                         width: 20,
                       ),
                       Text(
@@ -170,7 +169,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
                   child: Row(
                     children: [
                       const Icon(CupertinoIcons.photo_on_rectangle),
-                      sizedBoxx(
+                      SizedBox(
                         width: 20,
                       ),
                       Text(
@@ -206,7 +205,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
     return CupertinoPageScaffold(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 30),
-        child: ListView(
+        child: Column(
           children: [
             GestureDetector(
               onTap: () {
@@ -236,7 +235,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
                             ),
                   )
                 : Container(),
-            sizedBoxx(
+            SizedBox(
               height: 20,
             ),
             Forms(
@@ -267,7 +266,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
                 },
               ),
             ),
-            sizedBoxx(height: 20),
+            SizedBox(height: 20),
             SaveButton(
               formKey: _formKey,
               name: name,

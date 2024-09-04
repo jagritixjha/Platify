@@ -6,10 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:platform_converter_app/views/provides/image_provider.dart';
-import 'package:platform_converter_app/views/provides/switch_provider.dart';
-import 'package:platform_converter_app/views/provides/theme_provider.dart';
-import 'package:platform_converter_app/views/utils/common_widgets/sized_box.dart';
+import 'package:platform_converter_app/providers/image_provider.dart';
+import 'package:platform_converter_app/providers/switch_provider.dart';
+import 'package:platform_converter_app/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -45,7 +44,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: Row(
                     children: [
                       const Icon(CupertinoIcons.camera),
-                      sizedBoxx(
+                      SizedBox(
                         width: 20,
                       ),
                       Text(
@@ -64,7 +63,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: Row(
                     children: [
                       const Icon(CupertinoIcons.photo_on_rectangle),
-                      sizedBoxx(
+                      SizedBox(
                         width: 20,
                       ),
                       Text(
@@ -99,7 +98,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         context: context,
         builder: (BuildContext context) {
           return CupertinoAlertDialog(
-            title: Text('Alert'),
+            title: const Text('Alert'),
             content: Text(
               'Please fill all the details',
               style:
@@ -107,7 +106,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         fontSize: 14,
                       ),
             ),
-            actions: <Widget>[
+            actions: [
               CupertinoDialogAction(
                 child: Text(
                   'OK',
@@ -167,8 +166,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           _showImagePicker(context);
                         },
                         child: Consumer<ImageFileProvider>(
-                          builder: (context, imageProvider, child) =>
-                              CircleAvatar(
+                            builder: (context, imageProvider, child) {
+                          return CircleAvatar(
                             foregroundImage: imageProvider.pfp != null
                                 ? FileImage(imageProvider.pfp!)
                                 : null,
@@ -179,8 +178,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               size: 30,
                               color: CupertinoColors.white,
                             ),
-                          ),
-                        ),
+                          );
+                        }),
                       ),
                       CupertinoTextFormFieldRow(
                         padding: EdgeInsets.zero,
@@ -188,12 +187,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         controller: name,
                         style: CupertinoTheme.of(context)
                             .textTheme
-                            .textStyle
-                            .copyWith(
-                              fontSize: 16,
-                              height: 1,
-                              color: CupertinoColors.systemGrey,
-                            ),
+                            .actionTextStyle,
                         placeholder: 'Enter your name',
                         textAlign: TextAlign.center,
                         placeholderStyle: CupertinoTheme.of(context)
@@ -201,7 +195,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             .textStyle
                             .copyWith(
                               fontSize: 12,
-                              height: 1,
                               color: CupertinoColors.systemGrey,
                             ),
                         validator: (value) {
@@ -218,18 +211,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         textAlign: TextAlign.center,
                         style: CupertinoTheme.of(context)
                             .textTheme
-                            .textStyle
-                            .copyWith(
-                              fontSize: 14,
-                              height: 0,
-                              color: CupertinoColors.systemGrey,
-                            ),
+                            .actionTextStyle
+                            .copyWith(fontSize: 14),
                         placeholderStyle: CupertinoTheme.of(context)
                             .textTheme
                             .textStyle
                             .copyWith(
                               fontSize: 12,
-                              height: 0,
                               color: CupertinoColors.systemGrey,
                             ),
                         validator: (value) {
@@ -239,6 +227,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         },
                       ),
                       CupertinoButton.filled(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 60),
                         borderRadius: BorderRadius.circular(50),
                         child: Text(
                           'Save',

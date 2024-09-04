@@ -64,6 +64,10 @@ class CupertinoFormField extends StatelessWidget {
           color: CupertinoColors.systemGrey,
         ),
       ),
+      style: CupertinoTheme.of(context)
+          .textTheme
+          .actionTextStyle
+          .copyWith(fontSize: 14),
       prefix: prefixIcon,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       placeholder: placeholderText,
