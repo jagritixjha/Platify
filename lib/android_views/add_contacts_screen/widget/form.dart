@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:platform_converter_app/ios_views/add_contacts_screen/widgets/text_field.dart';
+import 'package:flutter/material.dart';
+import 'package:platform_converter_app/android_views/add_contacts_screen/widget/text_field.dart';
 
 class Forms extends StatelessWidget {
   const Forms({
@@ -21,17 +21,20 @@ class Forms extends StatelessWidget {
       key: formKey,
       child: Column(
         children: [
-          CupertinoFormField(
+          CustomTextFormField(
             placeholderText: 'Full Name',
-            prefixIcon: const Icon(CupertinoIcons.person),
+            prefixIcon: const Icon(Icons.person),
             validator: (value) {
               return value == null || value.isEmpty ? 'enter name' : null;
             },
             ctrVar: name,
           ),
-          CupertinoFormField(
+          const SizedBox(
+            height: 12,
+          ),
+          CustomTextFormField(
             placeholderText: 'Phone Number',
-            prefixIcon: const Icon(CupertinoIcons.phone),
+            prefixIcon: const Icon(Icons.phone),
             validator: (value) {
               return value == null || value.isEmpty
                   ? 'enter phone number'
@@ -39,9 +42,12 @@ class Forms extends StatelessWidget {
             },
             ctrVar: phoneNumber,
           ),
-          CupertinoFormField(
+          const SizedBox(
+            height: 12,
+          ),
+          CustomTextFormField(
             placeholderText: 'Chat Conversation',
-            prefixIcon: const Icon(CupertinoIcons.chat_bubble_text),
+            prefixIcon: const Icon(Icons.chat_outlined),
             validator: (value) {
               return value == null || value.isEmpty
                   ? 'enter chat conversation'

@@ -4,11 +4,11 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:platform_converter_app/views/add_contacts_screen/widgets/form.dart';
-import 'package:platform_converter_app/views/add_contacts_screen/widgets/pickers.dart';
-import 'package:platform_converter_app/views/add_contacts_screen/widgets/save_button.dart';
-import 'package:platform_converter_app/provides/change_time_provider.dart';
-import 'package:platform_converter_app/provides/image_provider.dart';
+import 'package:platform_converter_app/ios_views/add_contacts_screen/widgets/form.dart';
+import 'package:platform_converter_app/ios_views/add_contacts_screen/widgets/pickers.dart';
+import 'package:platform_converter_app/ios_views/add_contacts_screen/widgets/save_button.dart';
+import 'package:platform_converter_app/providers/change_time_provider.dart';
+import 'package:platform_converter_app/providers/image_provider.dart';
 import 'package:provider/provider.dart';
 
 class AddContactScreen extends StatefulWidget {
@@ -106,11 +106,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
                       hours: DateTime.now().hour,
                       minutes: DateTime.now().minute,
                     );
-
-                    (timeProvider.selectedTime.inHours ==
-                                initialTime.inHours) &&
-                            timeProvider.selectedTime.inMinutes ==
-                                initialTime.inMinutes
+                    (timeProvider.selectedTime.inHours == initialTime.inHours)
                         ? timeProvider.updateTime(initialTime)
                         : null;
                     Navigator.pop(context);
@@ -150,7 +146,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
                   child: Row(
                     children: [
                       const Icon(CupertinoIcons.camera),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       Text(
@@ -169,7 +165,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
                   child: Row(
                     children: [
                       const Icon(CupertinoIcons.photo_on_rectangle),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       Text(
@@ -201,11 +197,11 @@ class _AddContactScreenState extends State<AddContactScreen> {
   Widget build(BuildContext context) {
     var timeProvider = Provider.of<DateTimeProvider>(context, listen: false);
     var imageProvider = Provider.of<ImageFileProvider>(context, listen: false);
-    log('build called');
     return CupertinoPageScaffold(
+      resizeToAvoidBottomInset: false,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 30),
-        child: Column(
+        child: ListView(
           children: [
             GestureDetector(
               onTap: () {
@@ -235,7 +231,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
                             ),
                   )
                 : Container(),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Forms(
@@ -259,14 +255,14 @@ class _AddContactScreenState extends State<AddContactScreen> {
               builder: (context, value, child) => Pickers(
                 icon: CupertinoIcons.time,
                 text: value.timeSelected
-                    ? '${value.selectedTime.inHours.remainder(12).toString().padLeft(2, '0')}:${value.selectedTime.inMinutes.remainder(60).toString().padLeft(2, '0')}'
+                    ? '${value.time.hourOfPeriod.toString().padLeft(2, '0')}:${value.time.minute.toString().padLeft(2, '0')}'
                     : 'Pick Time',
                 onPressed: () {
                   _showTimePicker(context);
                 },
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             SaveButton(
               formKey: _formKey,
               name: name,
