@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:platform_converter_app/android_views/home_screen.dart';
 import 'package:platform_converter_app/providers/change_time_provider.dart';
+import 'package:platform_converter_app/providers/contact_list_provider.dart';
 import 'package:platform_converter_app/providers/image_provider.dart';
 import 'package:platform_converter_app/providers/switch_provider.dart';
 import 'package:platform_converter_app/providers/theme_provider.dart';
@@ -34,6 +35,9 @@ Future<void> main() async {
           ),
           ChangeNotifierProvider(
             create: (context) => ImageFileProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => ContactListProvider(),
           )
         ],
         child: const MyApp(),
@@ -53,7 +57,6 @@ class MyApp extends StatelessWidget {
       builder: (context, pro, child) {
         return ui.ui
             ? MaterialApp(
-                useInheritedMediaQuery: true,
                 locale: DevicePreview.locale(context),
                 builder: DevicePreview.appBuilder,
                 debugShowCheckedModeBanner: false,
@@ -64,7 +67,7 @@ class MyApp extends StatelessWidget {
                 theme: theme.getTheme,
                 debugShowCheckedModeBanner: false,
                 title: 'Platform Converter',
-                home: HomeScreen(),
+                home: const HomeScreen(),
               );
       },
     );

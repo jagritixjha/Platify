@@ -17,7 +17,7 @@ class AddContactScreen extends StatefulWidget {
 }
 
 class _AddContactScreenState extends State<AddContactScreen> {
-  bool validation = false;
+  bool validation = true;
   TextEditingController phoneNumber = TextEditingController();
   TextEditingController name = TextEditingController();
   TextEditingController chat = TextEditingController();
@@ -221,16 +221,25 @@ class _AddContactScreenState extends State<AddContactScreen> {
                 ),
               ),
             ),
-            validation
-                ? Text(
-                    'select the profile pic',
-                    style:
-                        CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                              fontSize: 12,
-                              color: CupertinoColors.systemRed,
-                            ),
-                  )
-                : Container(),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 16),
+              child: Consumer<ImageFileProvider>(
+                builder: (context, value, child) {
+                  return !value.isPfp
+                      ? Text(
+                          'select the profile pic',
+                          style: CupertinoTheme.of(context)
+                              .textTheme
+                              .textStyle
+                              .copyWith(
+                                fontSize: 12,
+                                color: CupertinoColors.systemRed,
+                              ),
+                        )
+                      : Container();
+                },
+              ),
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -259,6 +268,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
                     : 'Pick Time',
                 onPressed: () {
                   _showTimePicker(context);
+                  log('----------${validation.toString()}');
                 },
               ),
             ),
@@ -270,8 +280,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
               chat: chat,
               selectedDate: timeProvider.selectedDate,
               selectedTime: timeProvider.selectedTime,
-              pfp: imageProvider.pfp,
-              validation: validation,
+              pfp: imageProvider,
             ),
           ],
         ),

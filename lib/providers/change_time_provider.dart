@@ -23,6 +23,11 @@ class DateTimeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void changeState() {
+    _dateSelected = !_dateSelected;
+    _timeSelected = !_timeSelected;
+  }
+
   void updateTime(Duration newTime) {
     _selectedTime = newTime;
     _timeSelected = true;

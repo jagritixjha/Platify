@@ -136,15 +136,23 @@ class AddToContact extends StatelessWidget {
                 ),
               ),
             ),
-            validation
-                ? Text(
-                    'select the profile pic',
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          fontSize: 12,
-                          color: Colors.red,
-                        ),
-                  )
-                : Container(),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              child: Consumer<ImageFileProvider>(
+                builder: (context, value, child) {
+                  return !value.isPfp
+                      ? Text(
+                          'select the profile pic',
+                          style:
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    fontSize: 12,
+                                    color: Colors.red.shade900,
+                                  ),
+                        )
+                      : Container();
+                },
+              ),
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -172,6 +180,8 @@ class AddToContact extends StatelessWidget {
                     ? '${value.time.hourOfPeriod.toString().padLeft(2, '0')}:${value.time.minute.toString().padLeft(2, '0')}'
                     : 'Pick Time',
                 onPressed: () {
+                  log('---------${validation.toString()}');
+
                   _showTimePicker(context);
                 },
               );
@@ -184,8 +194,7 @@ class AddToContact extends StatelessWidget {
               chat: chat,
               selectedDate: timeProvider.selectedDate,
               selectedTime: timeProvider.selectedTime,
-              pfp: imageProvider.pfp,
-              validation: validation,
+              pfp: imageProvider,
             ),
           ],
         ),

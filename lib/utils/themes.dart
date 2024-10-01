@@ -48,8 +48,8 @@ class Themes extends CupertinoThemeData {
         ),
       ),
     ),
-    CupertinoColors.black,
-    CupertinoColors.black,
+    CupertinoColors.darkBackgroundGray,
+    CupertinoColors.darkBackgroundGray,
     true,
   );
 

@@ -2,6 +2,9 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:platform_converter_app/providers/change_time_provider.dart';
+import 'package:platform_converter_app/providers/contact_list_provider.dart';
+import 'package:platform_converter_app/providers/image_provider.dart';
 import 'package:platform_converter_app/utils/contact_info_modal.dart';
 
 class SaveButton extends StatelessWidget {
@@ -14,7 +17,6 @@ class SaveButton extends StatelessWidget {
       required DateTime selectedDate,
       required Duration selectedTime,
       required this.pfp,
-      required this.validation,
       required})
       : _formKey = formKey,
         _selectedDate = selectedDate,
@@ -27,8 +29,7 @@ class SaveButton extends StatelessWidget {
   final DateTime _selectedDate;
   final Duration _selectedTime;
 
-  final File? pfp;
-  bool validation;
+  ImageFileProvider pfp;
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +46,7 @@ class SaveButton extends StatelessWidget {
               ),
         ),
         onPressed: () {
-          // isVisible = true;
-          if (_formKey.currentState!.validate() &&
-              (validation = pfp != null ? true : false)) {
+          if (_formKey.currentState!.validate() && (pfp.pfp != null)) {
             _formKey.currentState!.save();
             contacts.add(
               ContactInfo(
@@ -56,21 +55,17 @@ class SaveButton extends StatelessWidget {
                 chatConvo: chat.value.text,
                 date: _selectedDate,
                 time: _selectedTime,
-                pfp: pfp!,
+                pfp: pfp.pfp!,
               ),
             );
             _formKey.currentState!.reset();
 
-            for (var i in contacts) {
-              log(i.name);
-              log(i.phoneNumber);
-              log(i.chatConvo);
-              log('${i.time.inHours}:${i.time.inMinutes % 60}');
-              log('${i.date.day}/${i.date.month}/${i.date.year}');
-            }
+            name.clear();
+            phoneNumber.clear();
+            chat.clear();
+            pfp.updatePfp(null);
           } else {
-            validation = pfp != null ? true : false;
-            log(validation.toString());
+            pfp.valPfp();
             log('not validated');
           }
         },

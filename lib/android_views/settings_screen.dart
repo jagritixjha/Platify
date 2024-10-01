@@ -124,7 +124,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: Consumer<SwitchProvider>(
         builder: (context, sp, child) => ListView(
           children: [
-            const SizedBox(height: 26),
             ListTile(
               leading: const Icon(
                 Icons.person,
@@ -182,10 +181,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   ),
                           hintText: 'Enter your name',
                         ),
-                        style: const TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16),
+                        style: Theme.of(context).textTheme.bodyMedium!,
                         textAlign: TextAlign.center,
                         controller: name,
                         validator: (value) {
@@ -207,10 +203,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   ),
                           hintText: 'Enter your bio',
                         ),
-                        style: const TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16),
+                        style: Theme.of(context).textTheme.bodyMedium!,
                         textAlign: TextAlign.center,
                         controller: bio,
                         validator: (value) {

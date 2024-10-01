@@ -50,10 +50,10 @@ class AndroidHomeScreen extends StatelessWidget {
       ),
       bottomNavigationBar: Consumer<SwitchProvider>(
         builder: (context, pro, child) => BottomNavigationBar(
-          selectedItemColor: Colors.black,
+          selectedItemColor: Colors.white,
           unselectedItemColor: Colors.grey,
           selectedLabelStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
-              color: Colors.black87,
+              // color: Colors.black87,
               fontSize: 10,
               fontWeight: FontWeight.w700,
               inherit: true),

@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
               case 0:
                 return AddContactScreen();
               case 1:
-                return const ChatsScreen();
+                return ChatsScreen();
               case 2:
                 return const CallsScreen();
               case 3:
