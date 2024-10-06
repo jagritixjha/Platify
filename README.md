@@ -44,7 +44,7 @@ The app follows a separation of concerns, ensuring a clean codebase:
 - **Dynamic UI**: The app dynamically adjusts its layout and design to match either Android or iOS styles based on the user’s preferences.
 
 ## Screenshots
-[View all screenshots here](https://github.com/jagritixjha/platform_converter_app/blob/master/screenshots/readme.md)
+[View all screenshots here](https://github.com/jagritixjha/platform_converter_app/blob/master/screenshot.md)
 
 ### Prerequisites
 - [Flutter SDK](https://flutter.dev/docs/get-started/install)
