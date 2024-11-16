@@ -1,6 +1,6 @@
-# Platform Convertor
+# Platify
 
-Platform Convertor is a Flutter app that provides an efficient solution for managing contacts, chats, calls, and profile settings. It supports both Android and iOS UI styles, with a toggle to switch between them, and includes light and dark theme options, with settings stored using persistent local storage.
+Platify is a Flutter app that provides an efficient solution for managing contacts, chats, calls, and profile settings. It supports both Android and iOS UI styles, with a toggle to switch between them, and includes light and dark theme options, with settings stored using persistent local storage.
 
 ## Features
 
@@ -44,7 +44,7 @@ The app follows a separation of concerns, ensuring a clean codebase:
 - **Dynamic UI**: The app dynamically adjusts its layout and design to match either Android or iOS styles based on the user’s preferences.
 
 ## Screenshots
-[View all screenshots here](https://github.com/jagritixjha/platform_converter_app/blob/master/screenshot.md)
+[View all screenshots here](https://github.com/jagritixjha/Platify/blob/master/screenshot.md)
 
 ### Prerequisites
 - [Flutter SDK](https://flutter.dev/docs/get-started/install)
@@ -53,4 +53,4 @@ The app follows a separation of concerns, ensuring a clean codebase:
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/jagritixjha/platform-convertor.git
+   git clone https://github.com/jagritixjha/Platify.git
